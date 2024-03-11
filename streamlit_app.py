@@ -44,7 +44,7 @@ if __name__ == "__main__":
     env_path = "./.env"
     load_dotenv(dotenv_path=env_path, verbose=True)
 
-    st.title('IRM Search Doc')
+    st.title('IRM Help Document')
 
     prompt = st.chat_input("Enter your questions here")
 
