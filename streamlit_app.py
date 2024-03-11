@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-from dotenv import load_dotenv
+
 
 from langchain_openai import AzureOpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -10,7 +10,7 @@ from langchain_openai import AzureChatOpenAI
 
 @st.cache_resource
 def load_data(vector_store_dir: str = "data/IRM-faiss"):
-    db = FAISS.load_local(vector_store_dir, AzureOpenAIEmbeddings(),allow_dangerous_deserialization=True)
+    db = FAISS.load_local(vector_store_dir, AzureOpenAIEmbeddings())
     llm = AzureChatOpenAI(model_name="gpt-35-turbo", temperature=0.5)
 
     print("Loading data...")
@@ -41,8 +41,6 @@ if __name__ == "__main__":
     os.environ["OPENAI_API_TYPE"] = "azure"
     os.environ["OPENAI_API_VERSION"] = "2023-05-15"
     os.environ["OPENAI_API_BASE"] = "https://pvg-azure-openai-uk-south.openai.azure.com/openai"
-    env_path = "./.env"
-    load_dotenv(dotenv_path=env_path, verbose=True)
 
     st.title('IRM Help Document')
 
